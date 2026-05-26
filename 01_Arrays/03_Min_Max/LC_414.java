@@ -44,24 +44,29 @@ public class LC_414 {
         Integer secondMax=null;
         Integer third_Max=null;
         for(int i=0;i<nums.length;i++){
+            //No duplicates
             if((firstMax!=null&&nums[i]==firstMax)||
                 (secondMax!=null&&nums[i]==secondMax)||
             (third_Max!=null&&nums[i]==third_Max)){
                 continue;
             }
+            //Greater than firstMax
             else if(firstMax==null||nums[i]>firstMax){
                 third_Max=secondMax;
                 secondMax=firstMax;
                 firstMax=nums[i];
             }
+            //between firstMax and secondMax
             else if(secondMax==null||(nums[i]>secondMax && nums[i]<firstMax)){
                    third_Max=secondMax;
                    secondMax=nums[i];
             }
+            //between secondMax and third_Max
             else if(third_Max==null||nums[i]>third_Max && nums[i]<secondMax){
                     third_Max=nums[i];
             }
         }
+        //if third_Max is null , that means no third max element.
         if(third_Max==null){
             return firstMax;
         }
